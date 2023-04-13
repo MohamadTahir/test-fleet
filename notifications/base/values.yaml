@@ -30,7 +30,7 @@ configs:
     }
 
 envFrom:
-  - secretRef: { name: notification-api-general }
+  - secretRef: { name: test-fleet-general }
 
 volume:
   mountPath: /app/Resources/EmailTemplates.json
