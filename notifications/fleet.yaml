@@ -16,4 +16,4 @@ targetCustomizations:
     helm: { valuesFiles: [overlays/development/values.yaml] }
 
 dependsOn:
-  - name: test-fleet-certs
+  - name: fleet-test-certs
