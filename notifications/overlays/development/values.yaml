@@ -1,0 +1,6 @@
+replicas: 1
+
+configs:
+  ASPNETCORE_ENVIRONMENT: Staging
+  SendGrid__FromName: KRG Test Fleet Dev
+  SendGrid__FromEmail: noreply.payroll@em3787.dev.krd

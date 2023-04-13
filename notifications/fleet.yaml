@@ -1,0 +1,19 @@
+---
+namespace: test-fleet
+
+helm:
+  chart: oci://reg.dev.krd/charts/common-api
+  releaseName: notifications-api
+  version: 0.2.0
+
+  valuesFiles:
+    - base/values.yaml
+
+targetCustomizations:
+  - name: development
+    clusterSelector: { matchLabels: { env: dev } }
+    kustomize: { dir: overlays/development }
+    helm: { valuesFiles: [overlays/development/values.yaml] }
+
+dependsOn:
+  - name: test-fleet-certs

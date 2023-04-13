@@ -1,0 +1,7 @@
+---
+namespace: test-fleet
+
+helm:
+  chart: oci://reg.dev.krd/charts/self-signed-cert
+  releaseName: self-signed-cert
+  version: 0.1.1

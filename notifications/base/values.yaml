@@ -1,0 +1,44 @@
+addRabbitMQDefaultCred: true
+addGateWayPublicKey: true
+addReadinessProbe: false
+addLivenessProbe: true
+
+replicas: 2
+
+image:
+  repository: common/notifications-api
+  tag: 0.5.2
+
+configs:
+  CloudEvent__Source: http://notifications-api.test-flet
+  Mongodb__DatabaseName: fleet-test-notifications
+
+  Rabbitmq__Host: cluster.rabbitmq
+  Rabbitmq__ExchangeName: payroll
+  Rabbitmq__VirtualHost: payroll
+  Rabbitmq__Port: 5672
+
+  email_templates: |
+    {
+      "EmailTemplates": {
+          "test-template": {
+              "en": "d-44bcd1839d8848d3ad8252fd8428fcb9",
+              "ar": "d-44bcd1839d8848d3ad8252fd8428fcb9",
+              "ckb": "d-44bcd1839d8848d3ad8252fd8428fcb9"
+          }
+      }
+    }
+
+envFrom:
+  - secretRef: { name: notification-api-general }
+
+volume:
+  mountPath: /app/Resources/EmailTemplates.json
+  key: email_templates
+
+resources:
+  limits:
+    memory: 140Mi
+  requests:
+    memory: 140Mi
+    cpu: 10m
