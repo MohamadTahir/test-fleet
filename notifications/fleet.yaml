@@ -17,3 +17,17 @@ targetCustomizations:
 
 dependsOn:
   - name: fleet-test-certs
+
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: fleet-test
+  namespace: fleet-default
+spec:
+  branch: main
+  clientSecretName: github-auth-read-only
+  repo: https://github.com/ditkrg/test-fleet.git
+  targetNamespace: test-fleet
+  keepResources: true
+  targets:
+    - clusterName: dev

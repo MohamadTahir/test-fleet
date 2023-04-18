@@ -1,4 +1,4 @@
-addRabbitMQDefaultCred: true
+addRabbitMQDefaultCred: false
 addGateWayPublicKey: true
 addReadinessProbe: false
 addLivenessProbe: true
@@ -42,3 +42,15 @@ resources:
   requests:
     memory: 140Mi
     cpu: 10m
+
+env:
+  - name: RABBITMQ__USERNAME
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: test-fleet-general
+  - name: RABBITMQ__PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: test-fleet-general
